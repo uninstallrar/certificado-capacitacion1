@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro de Asistencia · Capacitación Google</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+  <link rel="icon" href="data:," />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="brand-seal">G</div>
+        <div>
+          <p class="brand-label">Capacitación Oficial</p>
+          <h1 class="brand-title">Google Workspace</h1>
+        </div>
+      </div>
+      <p class="header-tagline">Registro de Asistencia &amp; Certificación</p>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-layout">
+
+    <!-- FORM PANEL -->
+    <section class="form-panel" id="formPanel">
+      <div class="panel-header">
+        <span class="panel-step">Paso 1 de 2</span>
+        <h2 class="panel-title">Completá tus datos</h2>
+        <p class="panel-desc">Ingresá tu información para registrar tu asistencia y generar tu certificado oficial.</p>
+      </div>
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label for="nombre" class="field-label">Nombre completo <span class="req">*</span></label>
+          <input type="text" id="nombre" class="field-input" placeholder="Ej: María González" autocomplete="name" />
+          <span class="field-error" id="errorNombre"></span>
+        </div>
+
+        <div class="field">
+          <label for="dni" class="field-label">DNI / Legajo</label>
+          <input type="text" id="dni" class="field-input" placeholder="Ej: 35.123.456" />
+        </div>
+
+        <div class="field">
+          <label for="email" class="field-label">Correo electrónico <span class="req">*</span></label>
+          <input type="email" id="email" class="field-input" placeholder="nombre@empresa.com" autocomplete="email" />
+          <span class="field-error" id="errorEmail"></span>
+        </div>
+
+        <div class="field">
+          <label for="sector" class="field-label">Área / Sector</label>
+          <input type="text" id="sector" class="field-input" placeholder="Ej: Recursos Humanos" />
+        </div>
+
+        <div class="field field--full">
+          <label for="capacitacion" class="field-label">Nombre de la capacitación <span class="req">*</span></label>
+          <select id="capacitacion" class="field-input field-select">
+            <option value="">— Seleccioná la capacitación —</option>
+            <option value="Google Drive y Almacenamiento en la Nube">Google Drive y Almacenamiento en la Nube</option>
+            <option value="Gmail Avanzado y Gestión de Correo">Gmail Avanzado y Gestión de Correo</option>
+            <option value="Google Meet y Colaboración Remota">Google Meet y Colaboración Remota</option>
+            <option value="Google Docs, Sheets y Slides">Google Docs, Sheets y Slides</option>
+            <option value="Google Workspace Completo">Google Workspace Completo</option>
+            <option value="Otra">Otra (especificar abajo)</option>
+          </select>
+          <span class="field-error" id="errorCapacitacion"></span>
+        </div>
+
+        <div class="field field--full" id="fieldOtra" style="display:none;">
+          <label for="otraCapacitacion" class="field-label">Especificá la capacitación</label>
+          <input type="text" id="otraCapacitacion" class="field-input" placeholder="Nombre de la capacitación..." />
+        </div>
+
+        <div class="field">
+          <label for="fecha" class="field-label">Fecha de capacitación <span class="req">*</span></label>
+          <input type="date" id="fecha" class="field-input" />
+          <span class="field-error" id="errorFecha"></span>
+        </div>
+
+        <div class="field">
+          <label for="instructor" class="field-label">Instructor / Facilitador</label>
+          <input type="text" id="instructor" class="field-input" placeholder="Ej: Lic. Carlos Pérez" />
+        </div>
+
+        <div class="field field--full">
+          <label class="check-label">
+            <input type="checkbox" id="confirma" class="check-input" />
+            <span class="check-box"></span>
+            <span>Confirmo que asistí a la totalidad (o mayor parte) de la capacitación indicada.</span>
+          </label>
+          <span class="field-error" id="errorConfirma"></span>
+        </div>
+
+      </div><!-- /form-grid -->
+
+      <div class="form-actions">
+        <button class="btn btn--primary" id="btnGenerar" onclick="generarCertificado()">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+          Generar Certificado
+        </button>
+      </div>
+    </section>
+
+    <!-- CERTIFICATE PANEL -->
+    <section class="cert-panel" id="certPanel" style="display:none;">
+      <div class="panel-header">
+        <span class="panel-step">Paso 2 de 2</span>
+        <h2 class="panel-title">Tu certificado está listo</h2>
+        <p class="panel-desc">Revisá los datos y descargalo en PDF.</p>
+      </div>
+
+      <!-- CERTIFICATE -->
+      <div class="certificate" id="certificate">
+        <div class="cert-border-outer">
+          <div class="cert-border-inner">
+
+            <div class="cert-header">
+              <div class="cert-seal" id="certSeal">
+                <span class="seal-letter">G</span>
+              </div>
+              <p class="cert-org">Certificado de Asistencia</p>
+              <div class="cert-divider"></div>
+            </div>
+
+            <div class="cert-body">
+              <p class="cert-intro">Se certifica que</p>
+              <h2 class="cert-name" id="certNombre">—</h2>
+              <p class="cert-dni" id="certDni"></p>
+              <p class="cert-text">
+                asistió con efectividad a la capacitación
+              </p>
+              <h3 class="cert-course" id="certCurso">—</h3>
+              <p class="cert-text">llevada a cabo el día</p>
+              <p class="cert-date" id="certFecha">—</p>
+            </div>
+
+            <div class="cert-footer">
+              <div class="cert-footer-col">
+                <div class="cert-line"></div>
+                <p class="cert-footer-label" id="certInstructor">Instructor</p>
+                <p class="cert-footer-sub">Facilitador</p>
+              </div>
+              <div class="cert-footer-col cert-footer-col--center">
+                <div class="cert-stamp">✓</div>
+              </div>
+              <div class="cert-footer-col cert-footer-col--right">
+                <div class="cert-line"></div>
+                <p class="cert-footer-label">Área de Capacitación</p>
+                <p class="cert-footer-sub" id="certSector">Organización</p>
+              </div>
+            </div>
+
+            <p class="cert-code" id="certCode"></p>
+
+          </div>
+        </div>
+      </div>
+      <!-- /CERTIFICATE -->
+
+      <div class="cert-actions">
+        <button class="btn btn--outline" onclick="volverFormulario()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Modificar datos
+        </button>
+        <button class="btn btn--primary" onclick="descargarPDF()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3v13M5 14l7 7 7-7M3 21h18"/></svg>
+          Descargar PDF
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Cliente de Supabase (base de datos) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
