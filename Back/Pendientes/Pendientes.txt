@@ -1,0 +1,5 @@
+Certificado de capacitación → La más común. Indica que la persona completó una capacitación.
+Certificado de participación → Si solo acredita la asistencia, sin evaluar conocimientos.
+Certificado de aprobación → Si la capacitación incluyó una evaluación que fue aprobada.
+Certificado de finalización → Si acredita que el curso fue completado.
+Constancia de capacitación → Similar a certificado, aunque suele tener un carácter más informativo y menos formal.
